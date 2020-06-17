@@ -5,6 +5,7 @@ using UnityEngine;
 public class CubeMovement : MonoBehaviour
 {
     public VoidEventSO jumpEvent;
+    public VoidEventSO moveEvent;
 
     public float speed;
     public float jumpForce;
