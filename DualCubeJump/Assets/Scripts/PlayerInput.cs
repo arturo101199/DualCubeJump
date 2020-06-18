@@ -7,6 +7,8 @@ public class PlayerInput : MonoBehaviour
 
     public VoidEventSO jumpLeftCube;
     public VoidEventSO jumpRightCube;
+    public Param1EventSO moveRightCube;
+    public Param1EventSO moveLeftCube;
 
     GestureDetector gestureDetector;
 
@@ -77,17 +79,8 @@ public class PlayerInput : MonoBehaviour
 
                 bool right = gestureDetector.getRight();
 
-                switch (gestureDetector.onTouchUp(touchX, touchY))
-                {
-                    case GestureDetector.Gesture.SWIPE_UP:
-                        if (right)
-                            jumpRightCube.InvokeEvent();
-                        else
-                            jumpLeftCube.InvokeEvent();
-                        return;
-                    //default:
-                }
-                
+                GetGesture(touchX, touchY);
+
             }
         }
     }
@@ -108,21 +101,41 @@ public class PlayerInput : MonoBehaviour
             float touchX = Input.mousePosition.x;
             float touchY = Input.mousePosition.y;
 
-            bool right = gestureDetector.getRight();
+            
             print(gestureDetector.onTouchUp(touchX, touchY));
 
-            switch (gestureDetector.onTouchUp(touchX, touchY))
-            {
-                case GestureDetector.Gesture.SWIPE_UP:
-                    if (right)
-                        jumpRightCube.InvokeEvent();
-                    else
-                        jumpLeftCube.InvokeEvent();
-                    return;
-                    //default:
-            }
+            GetGesture(touchX, touchY);
 
         }
         
+    }
+
+    void GetGesture(float touchX, float touchY)
+    {
+
+        bool right = gestureDetector.getRight();
+
+        switch (gestureDetector.onTouchUp(touchX, touchY))
+        {
+            case GestureDetector.Gesture.SWIPE_UP:
+                if (right)
+                    jumpRightCube.InvokeEvent();
+                else
+                    jumpLeftCube.InvokeEvent();
+                return;
+            case GestureDetector.Gesture.SWIPE_LEFT:
+                if (right)
+                    moveRightCube.InvokeEvent(false);
+                else
+                    moveLeftCube.InvokeEvent(false);
+                return;
+            case GestureDetector.Gesture.SWIPE_RIGHT:
+                if (right)
+                    moveRightCube.InvokeEvent(true);
+                else
+                    moveLeftCube.InvokeEvent(true);
+                return;
+                //default:
+        }
     }
 }

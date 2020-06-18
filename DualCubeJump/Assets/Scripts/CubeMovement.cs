@@ -5,7 +5,7 @@ using UnityEngine;
 public class CubeMovement : MonoBehaviour
 {
     public VoidEventSO jumpEvent;
-    public VoidEventSO moveEvent;
+    public Param1EventSO moveEvent;
 
     public float speed;
     public float jumpForce;
@@ -35,6 +35,7 @@ public class CubeMovement : MonoBehaviour
         currentJumps = 0;
 
         jumpEvent.actionEvent += Jump;
+        moveEvent.actionEvent += Move;
     }
 
 
