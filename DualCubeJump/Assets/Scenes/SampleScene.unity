@@ -434,7 +434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &438896296
 Transform:
   m_ObjectHideFlags: 0
@@ -1731,6 +1731,11 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5049649725337950435, guid: e46d2c6e10c927c4da889f2053ae399c,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 5049649725337950446, guid: e46d2c6e10c927c4da889f2053ae399c,
         type: 3}
       propertyPath: m_Name
@@ -2017,17 +2022,17 @@ PrefabInstance:
     - target: {fileID: 5049649725337950433, guid: e46d2c6e10c927c4da889f2053ae399c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5049649725337950433, guid: e46d2c6e10c927c4da889f2053ae399c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5049649725337950433, guid: e46d2c6e10c927c4da889f2053ae399c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5049649725337950433, guid: e46d2c6e10c927c4da889f2053ae399c,
         type: 3}
@@ -2052,6 +2057,11 @@ PrefabInstance:
     - target: {fileID: 5049649725337950433, guid: e46d2c6e10c927c4da889f2053ae399c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5049649725337950435, guid: e46d2c6e10c927c4da889f2053ae399c,
+        type: 3}
+      propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5049649725337950446, guid: e46d2c6e10c927c4da889f2053ae399c,

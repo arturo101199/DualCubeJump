@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class CubeMovement : MonoBehaviour
 {
+    [Header("InputEvents")]
     public VoidEventSO jumpEvent;
     public Param1EventSO moveEvent;
 
+    [Header("Parameters")]
     public float speed;
     public float jumpForce;
 
     Rigidbody rb;
     Collider col;
 
-    const float OFFSET_RAYCAST = 0.1f;
+    const float OFFSET_RAYCAST = 0.3f;
     float colliderBoundaryY;
 
     const float GROUND_DISTANCE_X = 2f;
     const int NJumps = 1;
 
+    const float ROTATION_SPEED = 10f;
+
     int currentJumps;
+    bool isMoving;
+    float newPosX;
+    float dampVelocity = 0f;
 
 
     void Awake()
@@ -32,7 +39,6 @@ public class CubeMovement : MonoBehaviour
     {
         rb.velocity = Vector3.forward * speed;
         colliderBoundaryY = col.bounds.extents.y;
-        currentJumps = 0;
 
         jumpEvent.actionEvent += Jump;
         moveEvent.actionEvent += Move;
@@ -41,39 +47,56 @@ public class CubeMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-            Move(true);
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-            Move(false);
+        Rotate();
+        DoMovement();
+
     }
 
     void Jump()
     {
         if (IsGrounded())
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 
     void Move(bool right)
     {
-        if (right)
+        if (!isMoving)
         {
-            if(Mathf.Abs(currentJumps + 1) <= NJumps)
+            isMoving = true;
+            if (right && Mathf.Abs(currentJumps + 1) <= NJumps)
             {
-                transform.position += Vector3.right * GROUND_DISTANCE_X;
+                newPosX = transform.position.x + GROUND_DISTANCE_X;
                 currentJumps++;
             }
-        }
-        else
-        {
-            if (Mathf.Abs(currentJumps - 1) <= NJumps)
+            else if(!right && Mathf.Abs(currentJumps - 1) <= NJumps)
             {
-                transform.position += Vector3.left * GROUND_DISTANCE_X;
+                newPosX = transform.position.x - GROUND_DISTANCE_X;
                 currentJumps--;
             }
         }
         
+    }
+
+    void Rotate()
+    {
+        transform.Rotate(Vector3.right * speed * ROTATION_SPEED * Time.deltaTime, Space.Self);
+    }
+
+    void DoMovement()
+    {
+        if (isMoving)
+        {
+            float x = Mathf.SmoothDamp(transform.position.x, newPosX, ref dampVelocity, 0.2f);
+            transform.position = new Vector3(x, transform.position.y, transform.position.z);
+            if (Mathf.Abs(transform.position.x - newPosX) <= 0.025f)
+            {
+                transform.position = new Vector3(newPosX, transform.position.y, transform.position.z);
+                isMoving = false;   
+            }
+        }
     }
 
     bool IsGrounded()
@@ -90,4 +113,5 @@ public class CubeMovement : MonoBehaviour
         }
         return false;
     }
+    
 }
