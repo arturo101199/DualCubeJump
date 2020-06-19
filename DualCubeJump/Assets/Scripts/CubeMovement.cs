@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CubeMovement : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class CubeMovement : MonoBehaviour
 
     void Update()
     {
-        Rotate();
+        //Rotate();
         DoMovement();
 
     }
@@ -70,11 +71,23 @@ public class CubeMovement : MonoBehaviour
             {
                 newPosX = transform.position.x + GROUND_DISTANCE_X;
                 currentJumps++;
+                Vector3 angles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 90);
+                transform.DORotate(angles, 0.2f);
+                Tween a = transform.DOMoveY(1.5f, 0.1f);
+                Tween b = transform.DOMoveY(0, 0.1f);
+                Sequence moveSequence = DOTween.Sequence();
+                moveSequence.Insert(0, a);
+                moveSequence.Insert(1, b);
+                moveSequence.Play();
+
+                
             }
             else if(!right && Mathf.Abs(currentJumps - 1) <= NJumps)
             {
                 newPosX = transform.position.x - GROUND_DISTANCE_X;
                 currentJumps--;
+                Vector3 angles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90);
+                transform.DORotate(angles, 0.2f);
             }
         }
         
