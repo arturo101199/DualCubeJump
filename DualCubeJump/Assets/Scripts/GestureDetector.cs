@@ -6,7 +6,7 @@ public class GestureDetector
 {
     const float SWIPE_THRESHOLD = 150f;
     const float CLICK_THRESHOLD = 10f;
-    const float SWIPE_MARGIN = 120f;
+    const float SWIPE_MARGIN = 300f;
 
     float touchX, touchY;
     bool right;

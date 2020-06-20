@@ -22,8 +22,10 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         MobileInput();
+#if UNITY_EDITOR
         MouseInput();
-        
+#endif
+
     }
 
 
