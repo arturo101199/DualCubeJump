@@ -29,6 +29,8 @@ public class CubeMovement : MonoBehaviour
     float newPosX;
     float dampVelocity = 0f;
 
+    CubeTweenAnimations cubeTweenAnimations;
+
 
     void Awake()
     {
@@ -40,6 +42,7 @@ public class CubeMovement : MonoBehaviour
     {
         rb.velocity = Vector3.forward * speed;
         colliderBoundaryY = col.bounds.extents.y;
+        cubeTweenAnimations = new CubeTweenAnimations(transform);
 
         jumpEvent.actionEvent += Jump;
         moveEvent.actionEvent += Move;
@@ -48,7 +51,7 @@ public class CubeMovement : MonoBehaviour
 
     void Update()
     {
-        //Rotate();
+        Rotate();
         DoMovement();
 
     }
@@ -71,23 +74,15 @@ public class CubeMovement : MonoBehaviour
             {
                 newPosX = transform.position.x + GROUND_DISTANCE_X;
                 currentJumps++;
-                Vector3 angles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 90);
-                transform.DORotate(angles, 0.2f);
-                Tween a = transform.DOMoveY(1.5f, 0.1f);
-                Tween b = transform.DOMoveY(0, 0.1f);
-                Sequence moveSequence = DOTween.Sequence();
-                moveSequence.Insert(0, a);
-                moveSequence.Insert(1, b);
-                moveSequence.Play();
+                cubeTweenAnimations.DoTweensMovement(right, IsGrounded());
 
-                
+
             }
             else if(!right && Mathf.Abs(currentJumps - 1) <= NJumps)
             {
                 newPosX = transform.position.x - GROUND_DISTANCE_X;
                 currentJumps--;
-                Vector3 angles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90);
-                transform.DORotate(angles, 0.2f);
+                cubeTweenAnimations.DoTweensMovement(right, IsGrounded());
             }
         }
         
@@ -95,7 +90,9 @@ public class CubeMovement : MonoBehaviour
 
     void Rotate()
     {
-        transform.Rotate(Vector3.right * speed * ROTATION_SPEED * Time.deltaTime, Space.Self);
+
+        transform.Rotate(Vector3.right * speed * ROTATION_SPEED * Time.deltaTime, Space.World);
+
     }
 
     void DoMovement()

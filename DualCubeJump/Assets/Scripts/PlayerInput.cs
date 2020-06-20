@@ -21,44 +21,11 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*MouseJumpInput();
-        MobileJumpInput();*/
-
         MobileInput();
         MouseInput();
         
     }
 
-    void MobileJumpInput()
-    {
-        if (Input.touchCount > 0)
-        {
-            float touchX = Input.touches[0].position.x;
-            if (touchX <= Screen.width / 2)
-            {
-                jumpLeftCube.InvokeEvent();
-            }
-            else
-            {
-                jumpRightCube.InvokeEvent();
-            }
-        }
-    }
-
-    void MouseJumpInput()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Input.mousePosition.x <= Screen.width / 2)
-            {
-                jumpLeftCube.InvokeEvent();
-            }
-            else
-            {
-                jumpRightCube.InvokeEvent();
-            }
-        }
-    }
 
     void MobileInput()
     {
@@ -100,9 +67,6 @@ public class PlayerInput : MonoBehaviour
         {
             float touchX = Input.mousePosition.x;
             float touchY = Input.mousePosition.y;
-
-            
-            print(gestureDetector.onTouchUp(touchX, touchY));
 
             GetGesture(touchX, touchY);
 
