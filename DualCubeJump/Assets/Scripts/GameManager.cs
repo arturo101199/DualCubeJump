@@ -4,21 +4,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
     public GameObject ground;
     public VoidEventSO OnDisableGround;
     public FloatValue groundScaleZ;
 
-    const float START_POSITION = 300f;
+    ObjectPooler objectPooler;
 
-    float currentPosition = 1000f;
+    float start_position;
+    float currentPosition;
 
-
+    private void Awake()
+    {
+        objectPooler = ObjectPooler.GetInstance();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        CreateFirstGrounds();
         OnDisableGround.actionEvent += GenerateNewGround;
+        start_position = groundScaleZ.value / 2f - 10f;
+        currentPosition = groundScaleZ.value + start_position;
+        CreateFirstGrounds();
     }
 
     // Update is called once per frame
@@ -29,14 +36,15 @@ public class GameManager : MonoBehaviour
 
     void CreateFirstGrounds()
     {
-        Instantiate(ground, Vector3.forward * START_POSITION, Quaternion.identity);
-        Instantiate(ground, Vector3.forward * currentPosition, Quaternion.identity);
+        objectPooler.SpawnObject("Ground", Vector3.forward * start_position, Quaternion.identity);
+        objectPooler.SpawnObject("Ground", Vector3.forward * currentPosition, Quaternion.identity);
+
     }
 
     void GenerateNewGround()
     {
         currentPosition += groundScaleZ.value;
-        Instantiate(ground, Vector3.forward * currentPosition, Quaternion.identity);
+        objectPooler.SpawnObject("Ground", Vector3.forward * currentPosition, Quaternion.identity);
 
     }
 }

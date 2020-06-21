@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground : MonoBehaviour
+public class Ground : MonoBehaviour, IPooledObject
 {
 
     public VoidEventSO OnDisableGround;
+
     public FloatValue scaleZ;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,17 @@ public class Ground : MonoBehaviour
         {
             OnDisableGround.InvokeEvent();
             this.gameObject.SetActive(false);
+        }
+    }
+    
+    public void OnObjectSpawn()
+    {
+        InnerGround[] innerGrounds = transform.GetComponentsInChildren<InnerGround>();
+        bool right = false;
+        foreach (InnerGround innerGround in innerGrounds)
+        {
+            innerGround.SpawnObstacles(right);
+            right = !right;
         }
     }
 }
