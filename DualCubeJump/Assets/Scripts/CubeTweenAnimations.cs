@@ -29,7 +29,6 @@ public class CubeTweenAnimations
 
     public void DoTweensMovement(bool right, bool isGrounded)
     {
-        Debug.Log(playerTransform.rotation.eulerAngles);
         if (right)
         {
             if(isGrounded)

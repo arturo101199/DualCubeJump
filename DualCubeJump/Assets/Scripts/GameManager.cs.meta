@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8421ffb0bb17ac549a37cc1e9ca3907d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ground: {fileID: 5627689329536302686, guid: 49b06ef71e166fa4b8a880c8b0d071d8,
+      type: 3}
+  - OnDisableGround: {fileID: 11400000, guid: 6c422f0ff5864134592fc7371c71a668, type: 2}
+  - groundScaleZ: {fileID: 11400000, guid: 492ee0f86b27a7840abad64c33f40b44, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

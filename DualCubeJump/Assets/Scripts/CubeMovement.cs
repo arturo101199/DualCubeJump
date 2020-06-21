@@ -101,7 +101,7 @@ public class CubeMovement : MonoBehaviour
         {
             float x = Mathf.SmoothDamp(transform.position.x, newPosX, ref dampVelocity, 0.2f);
             transform.position = new Vector3(x, transform.position.y, transform.position.z);
-            if (Mathf.Abs(transform.position.x - newPosX) <= 0.025f)
+            if (Mathf.Abs(transform.position.x - newPosX) <= 0.05f)
             {
                 transform.position = new Vector3(newPosX, transform.position.y, transform.position.z);
                 isMoving = false;   
@@ -123,5 +123,11 @@ public class CubeMovement : MonoBehaviour
         }
         return false;
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.CompareTag("Obstacle"))
+            Time.timeScale = 0f;
+    }
+
 }
