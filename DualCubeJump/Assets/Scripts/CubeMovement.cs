@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class CubeMovement : MonoBehaviour
 {
@@ -53,6 +52,18 @@ public class CubeMovement : MonoBehaviour
     {
         Rotate();
         DoMovement();
+        if (Input.GetKey(KeyCode.Space))
+            Time.timeScale = 1f;
+
+    }
+
+    private void FixedUpdate()
+    {
+
+        if (rb.velocity.z != speed) //this solves a weird bug that affect velocity when getting into a new ground
+        {
+            rb.velocity = Vector3.forward * speed;
+        }
 
     }
 
