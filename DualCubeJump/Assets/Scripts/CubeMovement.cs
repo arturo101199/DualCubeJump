@@ -24,6 +24,7 @@ public class CubeMovement : MonoBehaviour
     const float ROTATION_SPEED = 10f;
 
     const float SPEED_INCREASE = 1f;
+    const float MAX_SPEED = 150f;
 
     int currentJumps;
     bool isMoving;
@@ -52,16 +53,15 @@ public class CubeMovement : MonoBehaviour
 
     void Update()
     {
+        print(speed);
         Rotate();
         DoMovement();
-        if (Input.GetKey(KeyCode.Space))
-            Time.timeScale = 1f;
-        speed += SPEED_INCREASE * Time.deltaTime;
+        speed = Mathf.Clamp(speed + SPEED_INCREASE * Time.deltaTime, 0f, MAX_SPEED);
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);
 
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         if (rb.velocity.z != speed) //this solves a weird bug that affect velocity when getting into a new ground
         {
@@ -69,7 +69,7 @@ public class CubeMovement : MonoBehaviour
             rb.velocity = Vector3.forward * speed;
         }
 
-    }
+    }*/
 
     void Jump()
     {
