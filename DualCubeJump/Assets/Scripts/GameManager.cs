@@ -6,11 +6,23 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     const int COUNTDOWN_TIME = 3;
-
-    public GameObject ground;
+    
+    [Header("Events")]
     public VoidEventSO OnDisableGround;
+    public VoidEventSO onGameOver;
+
+    [Header("GroundScale")]
     public FloatValue groundScaleZ;
+
+    [Header("Scores")]
+    public IntValue score;
+    public IntValue highScore;
+
+    [Header("Canvas")]
     public GameObject CountDownCanvas;
+    public GameObject InGameCanvas;
+    public GameObject GameOverCanvas;
+
     public Text CountDownText;
 
     ObjectPooler objectPooler;
@@ -29,7 +41,9 @@ public class GameManager : MonoBehaviour
     {
         PauseGame();
 
-        OnDisableGround.actionEvent += GenerateNewGround;
+        highScore.value = PlayerPrefs.GetInt("HighScore", 0);
+
+        EnableEvents();
 
         SetGroundPositions();
 
@@ -67,17 +81,52 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         CountDownCanvas.SetActive(false);
+        InGameCanvas.SetActive(true);
+    }
+
+    void GameOver()
+    {
+        PauseGame();
+        GameOverCanvas.SetActive(true);
+        DisableEvents();
+        if (score.value > PlayerPrefs.GetInt("HighScore"))
+        {
+            PlayerPrefs.SetInt("HighScore", score.value);
+            highScore.value = score.value;
+        }
+    }
+
+    void EnableEvents()
+    {
+        OnDisableGround.actionEvent += GenerateNewGround;
+        onGameOver.actionEvent += GameOver;
+    }
+    
+    void DisableEvents()
+    {
+        OnDisableGround.actionEvent -= GenerateNewGround;
+        onGameOver.actionEvent -= GameOver;
     }
 
     IEnumerator countDownForStartingGame()
     {
-        while(currentCount > 0)
+        while(currentCount > 1)
         {
             currentCount--;
             CountDownText.text = currentCount.ToString();
             yield return new WaitForSecondsRealtime(1f);
         }
 
-        ResumeGame(); 
+        ResumeGame();
+        StartCoroutine(scoreUpdate());
+    }
+
+    IEnumerator scoreUpdate()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            score.value++;
+        }
     }
 }

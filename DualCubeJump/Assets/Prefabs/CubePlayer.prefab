@@ -125,5 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpEvent: {fileID: 11400000, guid: 26cd0a9b4c2f1bc43939fd51ce587928, type: 2}
   moveEvent: {fileID: 11400000, guid: 45ef174349f73ef45a7ddf961cedf2ca, type: 2}
+  OnGameOver: {fileID: 11400000, guid: 4ee32c15592d5f640bc600571d0a96ae, type: 2}
   speed: 20
   jumpForce: 5

@@ -8,6 +8,8 @@ public class CubeMovement : MonoBehaviour
     public VoidEventSO jumpEvent;
     public Param1EventSO moveEvent;
 
+    public VoidEventSO onGameOver;
+
     [Header("Parameters")]
     public float speed;
     public float jumpForce;
@@ -46,14 +48,12 @@ public class CubeMovement : MonoBehaviour
         colliderBoundaryY = col.bounds.extents.y;
         cubeTweenAnimations = new CubeTweenAnimations(transform);
 
-        jumpEvent.actionEvent += Jump;
-        moveEvent.actionEvent += Move;
+        EnableEvents();
     }
 
 
     void Update()
     {
-        print(speed);
         Rotate();
         DoMovement();
         speed = Mathf.Clamp(speed + SPEED_INCREASE * Time.deltaTime, 0f, MAX_SPEED);
@@ -61,15 +61,6 @@ public class CubeMovement : MonoBehaviour
 
     }
 
-    /*private void FixedUpdate()
-    {
-        if (rb.velocity.z != speed) //this solves a weird bug that affect velocity when getting into a new ground
-        {
-            print("hola");
-            rb.velocity = Vector3.forward * speed;
-        }
-
-    }*/
 
     void Jump()
     {
@@ -139,10 +130,28 @@ public class CubeMovement : MonoBehaviour
         return false;
     }
 
+    void OnDisable()
+    {
+        DisableEvents();
+    }
+
+    void EnableEvents()
+    {
+        jumpEvent.actionEvent += Jump;
+        moveEvent.actionEvent += Move;
+    }
+
+    void DisableEvents()
+    {
+        jumpEvent.actionEvent -= Jump;
+        moveEvent.actionEvent -= Move;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.CompareTag("Obstacle"))
-            Time.timeScale = 0f;
+        if (collision.transform.CompareTag("Obstacle"))
+            onGameOver.InvokeEvent();
+                //Time.timeScale = 0f;
     }
 
 }
