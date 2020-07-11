@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GestureDetector
 {
-    const float SWIPE_THRESHOLD = 150f;
+    const float SWIPE_THRESHOLD = 75f;
     const float CLICK_THRESHOLD = 10f;
     const float SWIPE_MARGIN = 300f;
 

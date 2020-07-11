@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public Text CountDownText;
 
+    public static bool pause;
+
     ObjectPooler objectPooler;
 
     float start_position;
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviour
     void PauseGame()
     {
         Time.timeScale = 0f;
+        pause = true;
     }
 
     void ResumeGame()
@@ -82,6 +85,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         CountDownCanvas.SetActive(false);
         InGameCanvas.SetActive(true);
+        pause = false;
     }
 
     void GameOver()
