@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("Events")]
     public VoidEventSO OnDisableGround;
     public VoidEventSO onGameOver;
+    public VoidEventSO PauseEvent;
 
     [Header("GroundScale")]
     public FloatValue groundScaleZ;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject CountDownCanvas;
     public GameObject InGameCanvas;
     public GameObject GameOverCanvas;
+    public GameObject PauseCanvas;
 
     public Text CountDownText;
 
@@ -32,7 +34,9 @@ public class GameManager : MonoBehaviour
     float start_position;
     float currentPosition;
 
-    int currentCount = COUNTDOWN_TIME + 1;
+    int currentCount;
+
+    IEnumerator scoreTextRoutine;
 
     private void Awake()
     {
@@ -41,9 +45,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        PauseGame();
 
         highScore.value = PlayerPrefs.GetInt("HighScore", 0);
+
+        scoreTextRoutine = scoreUpdate();
 
         EnableEvents();
 
@@ -51,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         CreateFirstGrounds();
 
-        StartCoroutine(countDownForStartingGame());
+        SetCountDown();
     }
 
     void SetGroundPositions()
@@ -78,6 +83,22 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         pause = true;
+        InGameCanvas.SetActive(false);
+        PauseCanvas.SetActive(true);
+        StopCoroutine(scoreTextRoutine);
+
+    }
+
+    public void SetCountDown()
+    {
+        currentCount = COUNTDOWN_TIME + 1;
+        Time.timeScale = 0f;
+        InGameCanvas.SetActive(false);
+        PauseCanvas.SetActive(false);
+        CountDownCanvas.SetActive(true);
+        pause = true;
+        StartCoroutine(countDownForStartingGame());
+
     }
 
     void ResumeGame()
@@ -90,7 +111,7 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        PauseGame();
+        Time.timeScale = 0f;
         GameOverCanvas.SetActive(true);
         DisableEvents();
         if (score.value > PlayerPrefs.GetInt("HighScore"))
@@ -104,12 +125,14 @@ public class GameManager : MonoBehaviour
     {
         OnDisableGround.actionEvent += GenerateNewGround;
         onGameOver.actionEvent += GameOver;
+        PauseEvent.actionEvent += PauseGame;
     }
     
     void DisableEvents()
     {
         OnDisableGround.actionEvent -= GenerateNewGround;
         onGameOver.actionEvent -= GameOver;
+        PauseEvent.actionEvent -= PauseGame;
     }
 
     IEnumerator countDownForStartingGame()
@@ -122,7 +145,7 @@ public class GameManager : MonoBehaviour
         }
 
         ResumeGame();
-        StartCoroutine(scoreUpdate());
+        StartCoroutine(scoreTextRoutine);
     }
 
     IEnumerator scoreUpdate()

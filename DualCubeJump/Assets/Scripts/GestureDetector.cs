@@ -11,7 +11,7 @@ public class GestureDetector
     float touchX, touchY;
     bool right;
 
-    public enum Gesture { SWIPE_UP, SWIPE_LEFT, SWIPE_RIGHT, NONE }
+    public enum Gesture { SWIPE_UP, SWIPE_LEFT, SWIPE_RIGHT, CLICK, NONE }
 
     public bool getRight()
     {
@@ -33,11 +33,11 @@ public class GestureDetector
     {
         if (Mathf.Abs(x - touchX) < CLICK_THRESHOLD && Mathf.Abs(y - touchY) < CLICK_THRESHOLD)
         {
-            return Gesture.NONE;
+            return Gesture.CLICK;
         }
         /*else if (touchY - y > SWIPE_THRESHOLD && Mathf.Abs(x - touchX) < SWIPE_MARGIN)
         {
-            return Gesture.SWIPE_UP;
+            return Gesture.SWIPE_DOWN;
         }*/
         else if (y - touchY > SWIPE_THRESHOLD && Mathf.Abs(x - touchX) < SWIPE_MARGIN)
         {

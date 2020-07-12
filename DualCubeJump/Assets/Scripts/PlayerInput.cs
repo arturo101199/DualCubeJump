@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    const float TIME_BETWEEN_CLICKS = 0.5f;
 
+    public VoidEventSO PauseEvent;
     public VoidEventSO jumpLeftCube;
     public VoidEventSO jumpRightCube;
     public Param1EventSO moveRightCube;
     public Param1EventSO moveLeftCube;
 
     GestureDetector gestureDetector;
+    bool click;
+    float timer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,16 @@ public class PlayerInput : MonoBehaviour
     {
         if (!GameManager.pause)
         {
+            if (click) //Handle double click
+            {
+                timer += Time.deltaTime;
+                if (timer > TIME_BETWEEN_CLICKS)
+                {
+                    click = false;
+                    timer = 0;
+                }
+            }
+
             MobileInput();
 #if UNITY_EDITOR
             MouseInput();
@@ -105,7 +119,14 @@ public class PlayerInput : MonoBehaviour
                 else
                     moveLeftCube.InvokeEvent(true);
                 return;
-                //default:
+            case GestureDetector.Gesture.CLICK:
+                if (!click)
+                    click = true;
+                else
+                {
+                    PauseEvent.InvokeEvent();
+                }
+                return;
         }
     }
 }
