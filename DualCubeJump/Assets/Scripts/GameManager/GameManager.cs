@@ -18,13 +18,7 @@ public class GameManager : MonoBehaviour
     [Header("Scores")]
     public IntValue score;
     public IntValue highScore;
-
-    [Header("Canvas")]
-    public GameObject CountDownCanvas;
-    public GameObject InGameCanvas;
-    public GameObject GameOverCanvas;
-    public GameObject PauseCanvas;
-
+    
     public Text CountDownText;
 
     public static bool pause;
@@ -38,9 +32,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator scoreTextRoutine;
 
+    HudSelector hudSelector;
+
     private void Awake()
     {
         objectPooler = ObjectPooler.GetInstance();
+        hudSelector = GetComponent<HudSelector>();
     }
 
     void Start()
@@ -83,8 +80,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         pause = true;
-        InGameCanvas.SetActive(false);
-        PauseCanvas.SetActive(true);
+        hudSelector.setHud(Hud.PAUSE);
         StopCoroutine(scoreTextRoutine);
 
     }
@@ -93,9 +89,7 @@ public class GameManager : MonoBehaviour
     {
         currentCount = COUNTDOWN_TIME + 1;
         Time.timeScale = 0f;
-        InGameCanvas.SetActive(false);
-        PauseCanvas.SetActive(false);
-        CountDownCanvas.SetActive(true);
+        hudSelector.setHud(Hud.COUNT);
         pause = true;
         StartCoroutine(countDownForStartingGame());
 
@@ -104,15 +98,14 @@ public class GameManager : MonoBehaviour
     void ResumeGame()
     {
         Time.timeScale = 1f;
-        CountDownCanvas.SetActive(false);
-        InGameCanvas.SetActive(true);
+        hudSelector.setHud(Hud.IN_GAME);
         pause = false;
     }
 
     void GameOver()
     {
         Time.timeScale = 0f;
-        GameOverCanvas.SetActive(true);
+        hudSelector.setHud(Hud.GAME_OVER);
         DisableEvents();
         if (score.value > PlayerPrefs.GetInt("HighScore"))
         {
@@ -137,7 +130,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator countDownForStartingGame()
     {
-        while(currentCount > 1)
+        CountDownText.GetComponent<sizeAnimation>().makeAnimation();
+        while (currentCount > 1)
         {
             currentCount--;
             CountDownText.text = currentCount.ToString();
