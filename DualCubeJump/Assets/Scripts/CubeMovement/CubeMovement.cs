@@ -151,7 +151,6 @@ public class CubeMovement : MonoBehaviour
     {
         if (collision.transform.CompareTag("Obstacle"))
             onGameOver.InvokeEvent();
-                //Time.timeScale = 0f;
     }
 
 }

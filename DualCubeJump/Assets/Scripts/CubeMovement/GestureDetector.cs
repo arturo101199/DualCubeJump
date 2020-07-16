@@ -2,56 +2,97 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Gesture { SWIPE_UP, SWIPE_LEFT, SWIPE_RIGHT, CLICK, NONE }
+
 public class GestureDetector
 {
     const float SWIPE_THRESHOLD = 75f;
     const float CLICK_THRESHOLD = 10f;
     const float SWIPE_MARGIN = 300f;
 
-    float touchX, touchY;
-    bool right;
+    bool rightTouched;
+    bool leftTouched;
+    float[,] touches = new float[2, 2];
 
-    public enum Gesture { SWIPE_UP, SWIPE_LEFT, SWIPE_RIGHT, CLICK, NONE }
 
+    /*
     public bool getRight()
     {
         return right;
-    }
+    }*/
 
     public void onTouchDown(float x, float y)
     {
-        touchX = x;
-        touchY = y;
-
-        if (touchX <= Screen.width / 2)
-            right = false;
+        if (x <= Screen.width / 2)
+        {
+            leftTouched = true;
+            touches[0, 0] = x;
+            touches[0, 1] = y;
+        }
         else
-            right = true;
+        {
+            rightTouched = true;
+            touches[1, 0] = x;
+            touches[1, 1] = y;
+        }
     }
 
-    public Gesture onTouchUp(float x, float y)
+    public (Gesture,bool) onTouchUp(float x, float y)
     {
+        float touchX;
+        float touchY;
+        bool right = false;
+
+        if (x <= Screen.width / 2)
+        {
+            if (!leftTouched)
+                return (Gesture.NONE,right);
+            right = false;
+            touchX = touches[0, 0];
+            touchY = touches[0, 1];
+        }
+        else
+        {
+            if (!rightTouched)
+                return (Gesture.NONE, right);
+            right = true;
+            touchX = touches[1, 0];
+            touchY = touches[1, 1];
+        }
+
         if (Mathf.Abs(x - touchX) < CLICK_THRESHOLD && Mathf.Abs(y - touchY) < CLICK_THRESHOLD)
         {
-            return Gesture.CLICK;
+            resetSide(right);
+            return (Gesture.CLICK, right);
+        }
+        else if (y - touchY > SWIPE_THRESHOLD && Mathf.Abs(x - touchX) < SWIPE_MARGIN)
+        {
+            resetSide(right);
+            return (Gesture.SWIPE_UP, right);
         }
         /*else if (touchY - y > SWIPE_THRESHOLD && Mathf.Abs(x - touchX) < SWIPE_MARGIN)
         {
             return Gesture.SWIPE_DOWN;
         }*/
-        else if (y - touchY > SWIPE_THRESHOLD && Mathf.Abs(x - touchX) < SWIPE_MARGIN)
-        {
-            return Gesture.SWIPE_UP;
-        }
         else if (x - touchX > SWIPE_THRESHOLD && Mathf.Abs(y - touchY) < SWIPE_MARGIN)
         {
-            return Gesture.SWIPE_RIGHT;
+            resetSide(right);
+            return (Gesture.SWIPE_RIGHT, right);
         }
         else if (touchX - x > SWIPE_THRESHOLD && Mathf.Abs(y - touchY) < SWIPE_MARGIN)
         {
-            return Gesture.SWIPE_LEFT;
+            resetSide(right);
+            return (Gesture.SWIPE_LEFT, right);
         }
-        return Gesture.NONE;
+        return (Gesture.NONE, right);
+    }
+
+    void resetSide(bool right)
+    {
+        if (right)
+            rightTouched = false;
+        else
+            leftTouched = false;
     }
 
 

@@ -48,7 +48,6 @@ public class CountDownText : MonoBehaviour
 
     void ChangeText(int currentCountDown)
     {
-        print(currentCountDown);
         text.text = currentCountDown.ToString();
     }
 
