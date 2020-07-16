@@ -3,7 +3,7 @@
 
 public class sizeAnimation : MonoBehaviour
 {
-    const string trigger = "ChangeSize";
+    const string TRIGGER = "ChangeSize";
     Animator anim;
 
     void Awake()
@@ -14,6 +14,6 @@ public class sizeAnimation : MonoBehaviour
 
     public void makeAnimation()
     {
-        anim.SetTrigger(trigger);
+        anim.SetTrigger(TRIGGER);
     }
 }

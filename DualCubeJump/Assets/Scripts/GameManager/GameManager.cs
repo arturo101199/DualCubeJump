@@ -33,11 +33,13 @@ public class GameManager : MonoBehaviour
     IEnumerator scoreTextRoutine;
 
     HudSelector hudSelector;
+    ScreenFader screenFader;
 
     private void Awake()
     {
         objectPooler = ObjectPooler.GetInstance();
         hudSelector = GetComponent<HudSelector>();
+        screenFader = GetComponentInChildren<ScreenFader>();
     }
 
     void Start()
@@ -87,7 +89,8 @@ public class GameManager : MonoBehaviour
 
     public void SetCountDown()
     {
-        currentCount = COUNTDOWN_TIME + 1;
+        screenFader.FadeIn();
+        currentCount = COUNTDOWN_TIME;
         Time.timeScale = 0f;
         hudSelector.setHud(Hud.COUNT);
         pause = true;
@@ -130,11 +133,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator countDownForStartingGame()
     {
+        CountDownText.text = currentCount.ToString();
+        yield return new WaitForSecondsRealtime(1f);
         CountDownText.GetComponent<sizeAnimation>().makeAnimation();
-        while (currentCount > 1)
+        while (currentCount > 0)
         {
-            currentCount--;
             CountDownText.text = currentCount.ToString();
+            currentCount--;
             yield return new WaitForSecondsRealtime(1f);
         }
 

@@ -25,7 +25,7 @@ public class CubeMovement : MonoBehaviour
 
     const float ROTATION_SPEED = 10f;
 
-    const float SPEED_INCREASE = 0.5f;
+    const float SPEED_INCREASE = 0.75f;
     const float MAX_SPEED = 150f;
 
     int currentJumps;

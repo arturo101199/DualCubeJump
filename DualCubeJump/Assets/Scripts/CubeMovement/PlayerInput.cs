@@ -124,6 +124,7 @@ public class PlayerInput : MonoBehaviour
                     click = true;
                 else
                 {
+                    click = false;
                     PauseEvent.InvokeEvent();
                 }
                 return;
