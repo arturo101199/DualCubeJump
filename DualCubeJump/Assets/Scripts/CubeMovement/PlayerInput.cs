@@ -9,8 +9,8 @@ public class PlayerInput : MonoBehaviour
     public VoidEventSO PauseEvent;
     public VoidEventSO jumpLeftCube;
     public VoidEventSO jumpRightCube;
-    public Param1EventSO moveRightCube;
-    public Param1EventSO moveLeftCube;
+    public Param1BoolEventSO moveRightCube;
+    public Param1BoolEventSO moveLeftCube;
 
     GestureDetector gestureDetector;
     bool click;

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu]
-public class Param1EventSO : ScriptableObject
+public class Param1BoolEventSO : ScriptableObject
 {
     public event Action<bool> actionEvent;
 

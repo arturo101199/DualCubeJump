@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public VoidEventSO PauseEvent;
     public VoidEventSO ChangeCountDownSize;
     public VoidEventSO StopChangeCountDownSize;
+    public Param1IntEventSO ChangeCountDownText;
 
     [Header("GroundScale")]
     public FloatValue groundScaleZ;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     public IntValue score;
     public IntValue highScore;
     
-    public Text CountDownText;
+    int currentCount;
 
     public static bool pause;
 
@@ -29,8 +30,6 @@ public class GameManager : MonoBehaviour
 
     float start_position;
     float currentPosition;
-
-    int currentCount;
 
     IEnumerator scoreTextRoutine;
 
@@ -135,15 +134,15 @@ public class GameManager : MonoBehaviour
 
     IEnumerator countDownForStartingGame()
     {
-        CountDownText.text = currentCount.ToString();
+        ChangeCountDownText.InvokeEvent(currentCount);
         yield return new WaitForSecondsRealtime(1f);
         
         while (currentCount > 0)
         {
             ChangeCountDownSize.InvokeEvent();
-            CountDownText.text = currentCount.ToString();
-            currentCount--;
             yield return new WaitForSecondsRealtime(1f);
+            currentCount--;
+            ChangeCountDownText.InvokeEvent(currentCount);
         }
         StopChangeCountDownSize.InvokeEvent();
         ResumeGame();

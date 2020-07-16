@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f55a0ce642793f4e892704b6b398dcc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3435afe40dfc53745a1a94bf7f52384e, type: 3}
   m_Name: MoveLeft
   m_EditorClassIdentifier: 

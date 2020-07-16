@@ -6,7 +6,7 @@ public class CubeMovement : MonoBehaviour
 {
     [Header("InputEvents")]
     public VoidEventSO jumpEvent;
-    public Param1EventSO moveEvent;
+    public Param1BoolEventSO moveEvent;
 
     public VoidEventSO onGameOver;
 
