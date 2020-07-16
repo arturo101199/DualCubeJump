@@ -1560,25 +1560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf7ae3e0955ec743b3e7602ef984a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1258963583
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258963579}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d987a0a4e5f49904f8946b3ff7121116, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  ChangeFontSize: {fileID: 11400000, guid: 93a8a4b62145a0b4da028274f5463a17, type: 2}
+  StopChangeFontSize: {fileID: 11400000, guid: b3f0f2855f8b88c4dafbed1f2a6c10fd, type: 2}
 --- !u!1 &1362285657 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8402296974912777697, guid: eba3ba3295aaa4a49af047962e549931,
@@ -3218,6 +3201,18 @@ PrefabInstance:
       propertyPath: CountDownText
       value: 
       objectReference: {fileID: 1929953472}
+    - target: {fileID: 8340065305951049891, guid: a27982f7602d6bc4cab65047c8b4756c,
+        type: 3}
+      propertyPath: ChangeCountDownSize
+      value: 
+      objectReference: {fileID: 11400000, guid: 93a8a4b62145a0b4da028274f5463a17,
+        type: 2}
+    - target: {fileID: 8340065305951049891, guid: a27982f7602d6bc4cab65047c8b4756c,
+        type: 3}
+      propertyPath: StopChangeCountDownSize
+      value: 
+      objectReference: {fileID: 11400000, guid: b3f0f2855f8b88c4dafbed1f2a6c10fd,
+        type: 2}
     - target: {fileID: 8340065305951049900, guid: a27982f7602d6bc4cab65047c8b4756c,
         type: 3}
       propertyPath: m_Name

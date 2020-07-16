@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public VoidEventSO OnDisableGround;
     public VoidEventSO onGameOver;
     public VoidEventSO PauseEvent;
+    public VoidEventSO ChangeCountDownSize;
+    public VoidEventSO StopChangeCountDownSize;
 
     [Header("GroundScale")]
     public FloatValue groundScaleZ;
@@ -135,14 +137,15 @@ public class GameManager : MonoBehaviour
     {
         CountDownText.text = currentCount.ToString();
         yield return new WaitForSecondsRealtime(1f);
-        CountDownText.GetComponent<sizeAnimation>().makeAnimation();
+        
         while (currentCount > 0)
         {
+            ChangeCountDownSize.InvokeEvent();
             CountDownText.text = currentCount.ToString();
             currentCount--;
             yield return new WaitForSecondsRealtime(1f);
         }
-
+        StopChangeCountDownSize.InvokeEvent();
         ResumeGame();
         StartCoroutine(scoreTextRoutine);
     }
