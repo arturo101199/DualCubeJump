@@ -1,36 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CubeMovement : MonoBehaviour
 {
+    const float OFFSET_RAYCAST = 0.3f;
+    const float GROUND_DISTANCE_X = 2f;
+    const float ROTATION_SPEED = 10f;
+    const float SPEED_INCREASE = 0.75f;
+    const float MAX_SPEED = 150f;
+    const int N_JUMPS = 1; 
+
     [Header("InputEvents")]
     public VoidEventSO jumpEvent;
     public Param1BoolEventSO moveEvent;
 
+    [Header("GameOverEvent")]
     public VoidEventSO onGameOver;
 
-    [Header("Parameters")]
+    [Header("PlayerParameters")]
     public float speed;
     public float jumpForce;
 
     Rigidbody rb;
     Collider col;
 
-    const float OFFSET_RAYCAST = 0.3f;
-    float colliderBoundaryY;
-
-    const float GROUND_DISTANCE_X = 2f;
-    const int NJumps = 1;
-
-    const float ROTATION_SPEED = 10f;
-
-    const float SPEED_INCREASE = 0.75f;
-    const float MAX_SPEED = 150f;
+    float colliderBoundaryY; //For raycasting
 
     int currentJumps;
     bool isMoving;
     float newPosX;
+
     float dampVelocity = 0f;
 
     CubeTweenAnimations cubeTweenAnimations;
@@ -76,7 +74,7 @@ public class CubeMovement : MonoBehaviour
         if (!isMoving)
         {
             isMoving = true;
-            if (right && Mathf.Abs(currentJumps + 1) <= NJumps)
+            if (right && Mathf.Abs(currentJumps + 1) <= N_JUMPS)
             {
                 newPosX = transform.position.x + GROUND_DISTANCE_X;
                 currentJumps++;
@@ -84,7 +82,7 @@ public class CubeMovement : MonoBehaviour
 
 
             }
-            else if(!right && Mathf.Abs(currentJumps - 1) <= NJumps)
+            else if(!right && Mathf.Abs(currentJumps - 1) <= N_JUMPS)
             {
                 newPosX = transform.position.x - GROUND_DISTANCE_X;
                 currentJumps--;

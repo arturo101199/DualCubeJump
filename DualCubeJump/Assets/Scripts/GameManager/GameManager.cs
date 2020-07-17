@@ -1,19 +1,17 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     const int COUNTDOWN_TIME = 3;
     
     [Header("Events")]
-    public VoidEventSO OnDisableGround;
+    public VoidEventSO onDisableGround;
     public VoidEventSO onGameOver;
-    public VoidEventSO PauseEvent;
-    public VoidEventSO ChangeCountDownSize;
-    public VoidEventSO StopChangeCountDownSize;
-    public Param1IntEventSO ChangeCountDownText;
+    public VoidEventSO pauseEvent;
+    public VoidEventSO changeCountDownSize;
+    public VoidEventSO stopChangeCountDownSize;
+    public Param1IntEventSO changeCountDownText;
 
     [Header("GroundScale")]
     public FloatValue groundScaleZ;
@@ -120,31 +118,31 @@ public class GameManager : MonoBehaviour
 
     void EnableEvents()
     {
-        OnDisableGround.actionEvent += GenerateNewGround;
+        onDisableGround.actionEvent += GenerateNewGround;
         onGameOver.actionEvent += GameOver;
-        PauseEvent.actionEvent += PauseGame;
+        pauseEvent.actionEvent += PauseGame;
     }
     
     void DisableEvents()
     {
-        OnDisableGround.actionEvent -= GenerateNewGround;
+        onDisableGround.actionEvent -= GenerateNewGround;
         onGameOver.actionEvent -= GameOver;
-        PauseEvent.actionEvent -= PauseGame;
+        pauseEvent.actionEvent -= PauseGame;
     }
 
     IEnumerator countDownForStartingGame()
     {
-        ChangeCountDownText.InvokeEvent(currentCount);
+        changeCountDownText.InvokeEvent(currentCount);
         yield return new WaitForSecondsRealtime(1f);
         
         while (currentCount > 0)
         {
-            ChangeCountDownSize.InvokeEvent();
+            changeCountDownSize.InvokeEvent();
             yield return new WaitForSecondsRealtime(1f);
             currentCount--;
-            ChangeCountDownText.InvokeEvent(currentCount);
+            changeCountDownText.InvokeEvent(currentCount);
         }
-        StopChangeCountDownSize.InvokeEvent();
+        stopChangeCountDownSize.InvokeEvent();
         ResumeGame();
         StartCoroutine(scoreTextRoutine);
     }

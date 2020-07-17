@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum Gesture { SWIPE_UP, SWIPE_LEFT, SWIPE_RIGHT, CLICK, NONE }
 
@@ -13,13 +11,6 @@ public class GestureDetector
     bool rightTouched;
     bool leftTouched;
     float[,] touches = new float[2, 2];
-
-
-    /*
-    public bool getRight()
-    {
-        return right;
-    }*/
 
     public void onTouchDown(float x, float y)
     {
@@ -47,6 +38,7 @@ public class GestureDetector
         {
             if (!leftTouched)
                 return (Gesture.NONE,right);
+
             right = false;
             touchX = touches[0, 0];
             touchY = touches[0, 1];
@@ -55,6 +47,7 @@ public class GestureDetector
         {
             if (!rightTouched)
                 return (Gesture.NONE, right);
+
             right = true;
             touchX = touches[1, 0];
             touchY = touches[1, 1];
@@ -65,25 +58,25 @@ public class GestureDetector
             resetSide(right);
             return (Gesture.CLICK, right);
         }
+
         else if (y - touchY > SWIPE_THRESHOLD && Mathf.Abs(x - touchX) < SWIPE_MARGIN)
         {
             resetSide(right);
             return (Gesture.SWIPE_UP, right);
         }
-        /*else if (touchY - y > SWIPE_THRESHOLD && Mathf.Abs(x - touchX) < SWIPE_MARGIN)
-        {
-            return Gesture.SWIPE_DOWN;
-        }*/
+
         else if (x - touchX > SWIPE_THRESHOLD && Mathf.Abs(y - touchY) < SWIPE_MARGIN)
         {
             resetSide(right);
             return (Gesture.SWIPE_RIGHT, right);
         }
+
         else if (touchX - x > SWIPE_THRESHOLD && Mathf.Abs(y - touchY) < SWIPE_MARGIN)
         {
             resetSide(right);
             return (Gesture.SWIPE_LEFT, right);
         }
+
         return (Gesture.NONE, right);
     }
 

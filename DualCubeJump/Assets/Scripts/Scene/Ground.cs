@@ -6,17 +6,8 @@ public class Ground : MonoBehaviour, IPooledObject
 {
 
     public VoidEventSO OnDisableGround;
-
     public FloatValue scaleZ;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Camera.main.transform.position.z > transform.position.z + scaleZ.value / 2)

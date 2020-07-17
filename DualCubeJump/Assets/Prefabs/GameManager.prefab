@@ -45,19 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8421ffb0bb17ac549a37cc1e9ca3907d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDisableGround: {fileID: 11400000, guid: 6c422f0ff5864134592fc7371c71a668, type: 2}
+  onDisableGround: {fileID: 11400000, guid: 6c422f0ff5864134592fc7371c71a668, type: 2}
   onGameOver: {fileID: 11400000, guid: 4ee32c15592d5f640bc600571d0a96ae, type: 2}
-  PauseEvent: {fileID: 11400000, guid: c74a2026eafcaba49a19e7d5d24890bb, type: 2}
-  ChangeCountDownSize: {fileID: 11400000, guid: 93a8a4b62145a0b4da028274f5463a17,
+  pauseEvent: {fileID: 11400000, guid: c74a2026eafcaba49a19e7d5d24890bb, type: 2}
+  changeCountDownSize: {fileID: 11400000, guid: 93a8a4b62145a0b4da028274f5463a17,
     type: 2}
-  StopChangeCountDownSize: {fileID: 11400000, guid: b3f0f2855f8b88c4dafbed1f2a6c10fd,
+  stopChangeCountDownSize: {fileID: 11400000, guid: b3f0f2855f8b88c4dafbed1f2a6c10fd,
     type: 2}
-  ChangeCountDownText: {fileID: 11400000, guid: 9845948aa5b0fb04fac5721e9c111a62,
+  changeCountDownText: {fileID: 11400000, guid: 9845948aa5b0fb04fac5721e9c111a62,
     type: 2}
   groundScaleZ: {fileID: 11400000, guid: 492ee0f86b27a7840abad64c33f40b44, type: 2}
   score: {fileID: 11400000, guid: 5307e27f00c8aa54b985c67ff14edd39, type: 2}
   highScore: {fileID: 11400000, guid: 931a948c5dd3ae04a87b23284dc25ca2, type: 2}
-  CountDownText: {fileID: 0}
 --- !u!114 &418276395
 MonoBehaviour:
   m_ObjectHideFlags: 0

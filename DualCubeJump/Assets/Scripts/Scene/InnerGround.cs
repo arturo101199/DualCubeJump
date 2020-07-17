@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 enum ObstacleType
 {
@@ -15,6 +13,10 @@ public class InnerGround : MonoBehaviour
     const float Z_POSITION_OFFSET = 80f;
     const float Z_START_OFFSET_1 = 70f;
     const float Z_START_OFFSET_2 = 110f;
+
+    const int DEFAULT_PROB = 70;
+    const int HOLE_PROB = 8;
+    const int LYING_PROB = 22;
 
     public FloatValue groundScaleZ;
 
@@ -50,19 +52,22 @@ public class InnerGround : MonoBehaviour
         {
             int randomObstacle;
 
+            //Avoiding two lying obstacles in a row
             if(prevObstacle != ObstacleType.LyingObstacle)
             {
-                randomObstacle = Random.Range(0, 5);
+                randomObstacle = Random.Range(0, 100);
             }
 
             else
             {
-                randomObstacle = Random.Range(0, 4);
+                randomObstacle = Random.Range(0, 100 - LYING_PROB);
             }
 
             ObstacleType obstacle;
             float xPos = transform.position.x;
-            if (randomObstacle < 3) //Default Obstacle
+
+            //Choosing randomly the type of the obstacle
+            if (randomObstacle < DEFAULT_PROB)
             {
                 obstacle = ObstacleType.DefaultObstacle;
                 int lane = Random.Range(0, 3);
@@ -73,11 +78,16 @@ public class InnerGround : MonoBehaviour
             }
             else
             {
-                if (randomObstacle == 3)
+                if (randomObstacle < DEFAULT_PROB + HOLE_PROB)
+                {
                     obstacle = ObstacleType.HoleObstacle;
+                }
                 else
+                {
                     obstacle = ObstacleType.LyingObstacle;
+                }
             }
+
             prevObstacle = obstacle;
             Vector3 pos = new Vector3(xPos, 0, startZ + i * Z_POSITION_OFFSET);
             objectPooler.SpawnObject(obstacles[(int)obstacle], pos, Quaternion.identity);

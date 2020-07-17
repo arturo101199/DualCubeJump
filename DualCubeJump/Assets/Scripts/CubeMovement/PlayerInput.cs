@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     const float TIME_BETWEEN_CLICKS = 0.5f;
 
+    [Header("InputEvents")]
     public VoidEventSO PauseEvent;
     public VoidEventSO jumpLeftCube;
     public VoidEventSO jumpRightCube;
@@ -100,22 +101,25 @@ public class PlayerInput : MonoBehaviour
     void GetGesture(float touchX, float touchY)
     {
         (Gesture, bool) gestureAndSide = gestureDetector.onTouchUp(touchX, touchY);
-        switch (gestureAndSide.Item1)
+        Gesture gesture = gestureAndSide.Item1;
+        bool right = gestureAndSide.Item2;
+
+        switch (gesture)
         {
             case Gesture.SWIPE_UP:
-                if (gestureAndSide.Item2)
+                if (right)
                     jumpRightCube.InvokeEvent();
                 else
                     jumpLeftCube.InvokeEvent();
                 return;
             case Gesture.SWIPE_LEFT:
-                if (gestureAndSide.Item2)
+                if (right)
                     moveRightCube.InvokeEvent(false);
                 else
                     moveLeftCube.InvokeEvent(false);
                 return;
             case Gesture.SWIPE_RIGHT:
-                if (gestureAndSide.Item2)
+                if (right)
                     moveRightCube.InvokeEvent(true);
                 else
                     moveLeftCube.InvokeEvent(true);
@@ -124,11 +128,11 @@ public class PlayerInput : MonoBehaviour
                 if (!click)
                 {
                     click = true;
-                    clickRight = gestureAndSide.Item2;
+                    clickRight = right;
                 }
                 else
                 {
-                    if(clickRight == gestureAndSide.Item2)
+                    if(clickRight == right)
                     {
                         click = false;
                         PauseEvent.InvokeEvent();

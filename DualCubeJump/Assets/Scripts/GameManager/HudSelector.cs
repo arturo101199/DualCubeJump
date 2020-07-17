@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum Hud { COUNT = 0, IN_GAME = 1, GAME_OVER = 2, PAUSE = 3}
 
