@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DefaultObstaclePool
   m_EditorClassIdentifier: 
   prefab: {fileID: 241425606799259717, guid: bad7dffb00953eb48ae6341e2f358e90, type: 3}
-  size: 25
+  size: 20
   tag: DefaultObstacle

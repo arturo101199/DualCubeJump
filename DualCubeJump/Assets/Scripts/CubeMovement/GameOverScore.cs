@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class GameOverScore : MonoBehaviour
 {
     public IntValue score;
     public string text;
-    Text scoreText;
+    TextMeshProUGUI scoreText;
 
     void Awake()
     {
-        scoreText = GetComponent<Text>();
+        scoreText = GetComponent<TextMeshProUGUI>();
     }
 
     void Start()

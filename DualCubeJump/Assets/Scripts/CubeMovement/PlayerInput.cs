@@ -52,7 +52,7 @@ public class PlayerInput : MonoBehaviour
     void MobileInput()
     {
         if (Input.touchCount > 0)
-        {
+        {/*
             foreach (Touch touch in Input.touches)
             {
                 if (touch.phase == TouchPhase.Began)
@@ -71,8 +71,29 @@ public class PlayerInput : MonoBehaviour
                     GetGesture(touchX, touchY);
 
                 }
+            }*/
+            int touchCount = Input.touchCount;
+            for (int i = 0; i < touchCount; i++)
+            {
+                Touch touch = Input.GetTouch(i);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    float touchX = touch.position.x;
+                    float touchY = touch.position.y;
+
+                    gestureDetector.onTouchDown(touchX, touchY);
+                }
+
+                else if (touch.phase == TouchPhase.Ended)
+                {
+                    float touchX = touch.position.x;
+                    float touchY = touch.position.y;
+
+                    GetGesture(touchX, touchY);
+
+                }
             }
-           
+
         }
     }
     

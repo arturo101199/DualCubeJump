@@ -3,7 +3,7 @@ using DG.Tweening;
 
 public class CubeTweenAnimations
 {
-    const float MOVE_TIME = 0.4f;
+    const float MOVE_TIME = 0.2f;
     const float ROTATION_DEGREES = 180f;
     const float JUMP_HEIGHT = 1.5f;
     const float FLOOR_HEIGHT = 0.5f;
@@ -72,7 +72,6 @@ public class CubeTweenAnimations
         moveRightSequence.Insert(0, b);
         moveRightSequence.Join(e);
         moveRightSequence.Append(f);
-
     }
 
 }

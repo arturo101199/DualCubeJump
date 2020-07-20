@@ -69,6 +69,21 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7736934764360313972, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764360313972, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764360313972, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7736934764360313973, guid: 038ecb9e811299348a042277062c156f,
         type: 3}
       propertyPath: m_Size.z
@@ -78,6 +93,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764953115552, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764953115552, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764953115552, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7736934764953115553, guid: 038ecb9e811299348a042277062c156f,
         type: 3}
@@ -118,6 +148,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764995330022, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764995330022, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764995330022, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7736934764995330023, guid: 038ecb9e811299348a042277062c156f,
         type: 3}
@@ -214,6 +259,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6738830238680161243}
     m_Modifications:
+    - target: {fileID: 7736934764360313972, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764360313972, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764360313972, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764953115552, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764953115552, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764953115552, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764995330022, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764995330022, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7736934764995330022, guid: 038ecb9e811299348a042277062c156f,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7736934766005869772, guid: 038ecb9e811299348a042277062c156f,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LyingObstacle
   m_EditorClassIdentifier: 
   prefab: {fileID: 241425606799259717, guid: 0eb82c7e5cd25e848bbf268306294bc7, type: 3}
-  size: 25
+  size: 10
   tag: LyingObstacle

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-
+using TMPro;
 
 public class CountDownText : MonoBehaviour
 {
     const int MAX_FONT_SIZE = 300;
     const int MIN_FONT_SIZE = 100;
 
-    Text text;
+    //Text text;
+    TextMeshProUGUI text;
     bool isChangingSize;
 
     public VoidEventSO ChangeFontSize;
@@ -16,7 +16,7 @@ public class CountDownText : MonoBehaviour
 
     void Awake()
     {
-        text = GetComponent<Text>();
+        text = GetComponent<TextMeshProUGUI>();
     }
 
     void Start()

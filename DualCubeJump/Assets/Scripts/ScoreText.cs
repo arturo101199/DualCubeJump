@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ScoreText : MonoBehaviour
 {
-    Text scoreText;
+    TextMeshProUGUI scoreText;
     public IntValue score;
 
     void Awake()
     {
-        scoreText = GetComponent<Text>();
+        scoreText = GetComponent<TextMeshProUGUI>();
     }
 
     void Start()

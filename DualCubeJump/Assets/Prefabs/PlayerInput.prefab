@@ -43,5 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b165c0b5aa3d06b41853eade41013404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseEvent: {fileID: 11400000, guid: c74a2026eafcaba49a19e7d5d24890bb, type: 2}
   jumpLeftCube: {fileID: 11400000, guid: 26cd0a9b4c2f1bc43939fd51ce587928, type: 2}
   jumpRightCube: {fileID: 11400000, guid: 26fb12ee95aba2a428b02ac9720d3f2f, type: 2}
+  moveRightCube: {fileID: 11400000, guid: 4aa911839397b674b8743994570d6d70, type: 2}
+  moveLeftCube: {fileID: 11400000, guid: 45ef174349f73ef45a7ddf961cedf2ca, type: 2}

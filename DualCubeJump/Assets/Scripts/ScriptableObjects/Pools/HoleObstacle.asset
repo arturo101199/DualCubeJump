@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HoleObstacle
   m_EditorClassIdentifier: 
   prefab: {fileID: 241425606799259717, guid: 040a6cf564fcd3f4f9b148b67d2687cc, type: 3}
-  size: 25
+  size: 10
   tag: HoleObstacle
