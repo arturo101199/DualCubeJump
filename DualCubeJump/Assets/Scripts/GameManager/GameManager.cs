@@ -33,18 +33,22 @@ public class GameManager : MonoBehaviour
 
     HudSelector hudSelector;
     ScreenFader screenFader;
+    AudioManager audioManager;
 
     private void Awake()
     {
         objectPooler = ObjectPooler.GetInstance();
         hudSelector = GetComponent<HudSelector>();
         screenFader = GetComponentInChildren<ScreenFader>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Start()
     {
 
         highScore.value = PlayerPrefs.GetInt("HighScore", 0);
+
+        audioManager.StopMenuMusic();
 
         scoreTextRoutine = scoreUpdate();
 
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
         pause = true;
         hudSelector.setHud(Hud.PAUSE);
         StopCoroutine(scoreTextRoutine);
+        audioManager.PauseBackGroundMusic();
 
     }
 
@@ -102,6 +107,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         hudSelector.setHud(Hud.IN_GAME);
         pause = false;
+        audioManager.PlayBackGroundMusic();
     }
 
     void GameOver()
@@ -109,6 +115,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         hudSelector.setHud(Hud.GAME_OVER);
         DisableEvents();
+        audioManager.StopBackGroundMusic();
         if (score.value > PlayerPrefs.GetInt("HighScore"))
         {
             PlayerPrefs.SetInt("HighScore", score.value);
@@ -138,6 +145,7 @@ public class GameManager : MonoBehaviour
         while (currentCount > 0)
         {
             changeCountDownSize.InvokeEvent();
+            audioManager.PlayBeep();
             yield return new WaitForSecondsRealtime(1f);
             currentCount--;
             changeCountDownText.InvokeEvent(currentCount);
@@ -155,4 +163,15 @@ public class GameManager : MonoBehaviour
             score.value++;
         }
     }
+
+    public void MuteUnmuteMusic()
+    {
+        audioManager.MuteUnmuteMusic();
+    }
+    
+    public void MuteUnmuteSFX()
+    {
+        audioManager.MuteUnmuteSFX();
+    }
+
 }

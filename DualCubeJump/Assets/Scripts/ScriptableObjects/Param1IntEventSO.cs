@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Events/Param1IntEventSO")]
 public class Param1IntEventSO : ScriptableObject
 {
     public event Action<int> actionEvent;
