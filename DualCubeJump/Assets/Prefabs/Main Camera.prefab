@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2608877880299683197}
   - component: {fileID: 2608877880299683194}
   - component: {fileID: 4307354981913068472}
+  - component: {fileID: 1622366451}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -44,7 +45,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.8301887, g: 0.6304735, b: 0.81388867, a: 1}
+  m_BackGroundColor: {r: 0.8313726, g: 0.6313726, b: 0.81568635, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -130,3 +131,45 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1622366451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2608877880299683198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102ddf72958858548ac88baddeb3d867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.05
+      outSlope: 0.05
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 20
+      value: 1
+      inSlope: 0.05
+      outSlope: 0.05
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  colors:
+  - {r: 0.8313726, g: 0.6313726, b: 0.81568635, a: 1}
+  - {r: 0.8962264, g: 0.8819136, b: 0.25787643, a: 1}
+  - {r: 0.7735849, g: 0.18431373, b: 0.18431373, a: 1}
+  - {r: 0.16353686, g: 0.7075472, b: 0.36755097, a: 1}
+  - {r: 0.3693485, g: 0.8578518, b: 0.9433962, a: 1}
